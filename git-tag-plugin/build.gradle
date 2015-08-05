@@ -1,0 +1,17 @@
+plugins {
+    id "uk.co.littlemike.publishing-smorgasbord-plugin" version "0.8"
+}
+
+version = '0.1-SNAPSHOT'
+
+basicPublishing {
+    organisation = 'uk.co.littlemike'
+    pluginImplementationClass = 'uk.co.littlemike.gradle.git.GitTagPlugin'
+}
+
+pluginBundle {
+    website = 'https://github.com/LittleMikeDev/gradle-git-tag-plugin'
+    vcsUrl = 'https://github.com/LittleMikeDev/gradle-git-tag-plugin.git'
+    description = 'Plugin for simple tagging of releases in git'
+    tags = ['simple', 'git', 'release', 'tag', 'tagging']
+}

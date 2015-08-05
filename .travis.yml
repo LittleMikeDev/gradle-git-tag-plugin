@@ -1,0 +1,9 @@
+language: java
+jdk:
+    - openjdk6
+
+script:
+    - ./gradlew
+
+after_success:
+    - ./gradlew publishPlugins
