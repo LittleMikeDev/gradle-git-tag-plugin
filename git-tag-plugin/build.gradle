@@ -2,7 +2,7 @@ plugins {
     id "uk.co.littlemike.publishing-smorgasbord-plugin" version "0.8"
 }
 
-version = '0.1-SNAPSHOT'
+version = '0.1'
 
 basicPublishing {
     organisation = 'uk.co.littlemike'
