@@ -1,5 +1,6 @@
 plugins {
-    id "uk.co.littlemike.publishing-smorgasbord-plugin" version "0.8"
+    id "uk.co.littlemike.publishing-smorgasbord-plugin" version "0.10"
+    id "com.gradle.plugin-publish" version "0.9.4"
 }
 
 version = '0.1'
