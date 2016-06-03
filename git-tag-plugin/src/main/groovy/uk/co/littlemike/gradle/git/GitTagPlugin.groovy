@@ -7,7 +7,8 @@ class GitTagPlugin implements Plugin<Project> {
 
     @Override
     void apply(Project project) {
-        project.apply(plugin: 'java')
-        println "Hello world!"
+        project.tasks.create('tag', GitTagTask) {
+            config = project.extensions.create('tag', GitTagConfig, project)
+        }
     }
 }

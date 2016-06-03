@@ -1,10 +1,21 @@
 plugins {
     id 'uk.co.littlemike.publishing-smorgasbord-plugin' version '0.10'
     id 'com.gradle.plugin-publish' version '0.9.4'
+    id 'java-gradle-plugin'
     id 'groovy'
 }
 
 version = '0.1'
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    compile 'org.ajoberstar:grgit:1.7.0'
+
+    testCompile 'junit:junit:4.12'
+}
 
 basicPublishing {
     organisation = 'uk.co.littlemike'
