@@ -1,18 +1,11 @@
 package uk.co.littlemike.gradle.git
 
-import org.gradle.api.Project
 import org.gradle.testfixtures.ProjectBuilder
-import org.junit.Before
 import org.junit.Test
 
 class GitTagConfigTest {
 
-    Project project
-
-    @Before
-    void setUp() {
-        project = new ProjectBuilder().build()
-    }
+    def project = new ProjectBuilder().build()
 
     @Test
     void usesProjectVersionByDefault() {

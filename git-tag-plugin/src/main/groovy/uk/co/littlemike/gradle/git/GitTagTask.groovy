@@ -11,10 +11,10 @@ public class GitTagTask extends DefaultTask {
     void tag() {
         def git = new Git()
         if (config.version.endsWith('-SNAPSHOT')) {
-            git.tag(config.version, false, true)
+            throw new RuntimeException("Cannot tag snapshot versions")
         } else {
-            git.tag(config.version, true, false, config.message)
-            git.push(config.username, config.password, config.dryRunPush)
+            git.tag(config.version, config.message)
+            git.push(config.dryRunPush, config.username, config.password)
         }
     }
 }

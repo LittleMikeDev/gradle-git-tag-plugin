@@ -1,19 +1,12 @@
 package uk.co.littlemike.gradle.git
 
 import groovy.mock.interceptor.StubFor
-import org.gradle.api.Project
 import org.gradle.testfixtures.ProjectBuilder
-import org.junit.Before
 import org.junit.Test
 
 class GitTagPluginTest {
 
-    Project project
-
-    @Before
-    void setUp() {
-        project = ProjectBuilder.builder().build()
-    }
+    def project = ProjectBuilder.builder().build()
 
     @Test
     void createsAnnotatedTagAndPushesForRelease() {
@@ -26,13 +19,11 @@ class GitTagPluginTest {
 
         def git = new StubFor(Git)
         git.demand.with {
-            tag { name, annotated, force, message ->
+            tag { name, message ->
                 assert name == project.tag.version
-                assert annotated == true
-                assert force == false
                 assert message == project.tag.message
             }
-            push { username, password, dryRun ->
+            push { dryRun, username, password ->
                 assert username == project.tag.username
                 assert password == project.tag.password
                 assert dryRun == project.tag.dryRunPush
@@ -45,23 +36,11 @@ class GitTagPluginTest {
         git.verify()
     }
 
-    @Test
-    void createsLightweightTagForSnapshot() {
+    @Test(expected = RuntimeException.class)
+    void cannotTagSnapshotVersions() {
         project.pluginManager.apply GitTagPlugin
         project.tag.version = '1.2.3-SNAPSHOT'
 
-        def git = new StubFor(Git)
-        git.demand.with {
-            tag { name, annotated, force ->
-                assert name == project.tag.version
-                assert annotated == false
-                assert force == true
-            }
-        }
-
-        git.use {
-            project.tasks.tag.execute()
-        }
-        git.verify()
+        project.tasks.tag.execute()
     }
 }
