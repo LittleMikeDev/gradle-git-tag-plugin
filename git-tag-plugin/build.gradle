@@ -44,3 +44,8 @@ apply plugin: new GroovyScriptEngine(
 ).loadScriptByName(
         pluginImplementation.replaceAll(/\./, "/") + ".groovy"
 )
+
+tag {
+    username = System.getenv("gitUsername")
+    password = System.getenv("gitPassword")
+}
